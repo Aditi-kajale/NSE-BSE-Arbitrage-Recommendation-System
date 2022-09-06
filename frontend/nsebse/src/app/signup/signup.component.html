@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+        <div class="d-flex flex-column" style="min-height: 100vh;">
+            <nav class="navbar navclass" style ="position: fixed">
+                <div class="container-fluid">
+                    <a class="navbar-brand" style = "margin-left:460px; float: none; text-align:center; color: #fff;" href="#">BSE/NSE Arbitrage Recommendation System</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent"> </div>
+                  <ul class="nav navbar-right">
+                    <div class="d-flex flex-row-reverse bd-highlight  style=margin-left:80px;">
+                        <a class="nav-link active" aria-current="page" href="#bot" style="margin-right:70px; color: #fff;">Contact Us</a>
+                      </div>
+                  </ul>
+                </div>
+            </nav> 
+<section class="signupSec">
+<div class="container ">
+    <div class="row ">
+        <div class="col-md-6">
+            <div class="card-deck">
+                <div class="card card_about ">
+                    <div class="text-center">
+                        <h2>About Us</h2>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                    
+                </div>
+            <div class="card card_sign">
+                <div class="text-center">
+                    <h1>Signup</h1>
+                    <h6>Register Yourself!</h6>
+                </div>
+                <form [formGroup] = "signupForm" *ngIf="signupForm" (ngSubmit)="signUp()">
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Full Name</label>
+                        <input formControlName="fullname" type="text" class="form-control" id="exampleInputPassword1">
+                      </div>
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Email address</label>
+                      <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Password</label>
+                      <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Signup</button>
+                </form>
+                <a style="color: #fff;" routerLink="/login">Already Registered? Click here to Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section >
+</div>
+</body>

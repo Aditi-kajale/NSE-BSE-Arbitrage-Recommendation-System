@@ -1,0 +1,53 @@
+.card_about{
+ 
+    border:none;
+      width:400px;
+      padding:40px;
+      position:absolute;
+      top:32%;
+      left:10%;
+  }
+  .card_log{
+      border:none;
+      width:500px;
+      padding:40px;
+      position:absolute;
+      top:50%;
+      left:75%;
+      transform: translate(-50%, -50%);
+      background: hsla(205,46%,30%,1);
+      background: linear-gradient(90deg, hsla(205,46%,30%,1) 0%, hsla(260,29%,36%,1) 100%);
+  }
+  
+  .card h1, h6 {
+      color: #fff;
+  }
+  label{
+      color: #fff;
+  }
+  
+  .login-sec{
+      height: 80%;
+  }
+  
+  
+  .navclass
+  {
+      width:100%;
+      background: #1b315e;
+      background: linear-gradient(90deg, rgb(35, 78, 109) 0%, rgb(65, 34, 129) 100%);
+      z-index:1; /*Add this*/
+  }
+  .footer {
+      position: relative;
+      margin-top: -150px; /* negative value of footer height */
+      height: 150px;
+      clear:both;
+      padding-top:20px;
+    } 
+  
+    .aboutus{
+      color: #ffffff;
+      
+    }
+  
