@@ -10,6 +10,5 @@ import com.citi.ver1.dto.User;
 
 public interface Login_Repo extends JpaRepository<User, String>{
 	@Query("select u from User u where u.email=:email and u.password=:password")
-	List<User>findUser(@Param("email")String email,
-			@Param("password")String password);
+	List<User>findUser(@Param("email")String email, @Param("password")String password);
 }

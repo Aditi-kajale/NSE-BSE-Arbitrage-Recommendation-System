@@ -22,10 +22,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.citi.ver1.BL.LoginService;
 import com.citi.ver1.BL.ProcessStocks;
+import com.citi.ver1.BL.SignUpService;
 import com.citi.ver1.dto.Stock;
 import com.citi.ver1.dto.Cart;
 import com.citi.ver1.dto.User;
 import com.citi.ver1.repository.Login_Repo;
+import com.citi.ver1.repository.SignUpRepo;
 import com.citi.ver1.repository.User_Cart_Repo;
 
 @RestController
@@ -52,7 +54,6 @@ public class MainController {
 	public ResponseEntity<?> Login(@RequestBody User user2)
 	{
 		Optional<User> user1=loginRepo.findById(user2.getEmail());
-		System.out.println(user1);
 		try
 		{
 			if(user1.get().getPassword().compareTo(user2.getPassword()) == 0)
@@ -74,6 +75,22 @@ public class MainController {
 	}
 	
 	
+	@PostMapping(value = "/signUp", consumes = {"application/json"})
+	public ResponseEntity<?> signUp(@RequestBody User user)
+	{
+		System.out.println(user);
+		try
+		{
+			signUpService.insert(user);
+			return ResponseEntity.ok(user);
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		return (ResponseEntity<?>) ResponseEntity.internalServerError();	
+	}
+	
+	
 	@RequestMapping("/top")
 	public List<Stock> disp(){
 		return processStocks.sendTopStocks();
@@ -84,6 +101,13 @@ public class MainController {
 	
 	@Autowired 
 	LoginService loginService;
+	
+	
+	@Autowired
+	SignUpRepo SignUpRepo;
+	
+	@Autowired 
+	SignUpService signUpService;
 	
 	@RequestMapping(method=RequestMethod.POST,value="/reg")
 	public String loginUser(@RequestBody User user) {
