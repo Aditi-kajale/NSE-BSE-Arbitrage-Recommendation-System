@@ -24,7 +24,7 @@
 <br>
 <h1 style="text-align:center" >Top 5 Recommendations</h1>
 <br>
-<table mat-table [dataSource]="topFive" class="mat-elevation-z8">
+<table mat-table [dataSource]="datasourceTopFive" class="mat-elevation-z8">
             <!--  Company Name Column -->
             <ng-container matColumnDef="company_name">
               <th mat-header-cell *matHeaderCellDef> Company Name </th>
@@ -65,7 +65,7 @@
   <br>
 <h1 style="text-align:center" >Live Data</h1>
 <br>
-<table mat-table [dataSource]="liveStocks" class="mat-elevation-z8">
+<table mat-table [dataSource]="datasourceLiveStocks" class="mat-elevation-z8">
             <!--  Company Name Column -->
             <ng-container matColumnDef="company_name">
               <th mat-header-cell *matHeaderCellDef> Company Name </th>
@@ -98,9 +98,9 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-          <!-- <mat-paginator #paginator [pageSize] = "10" [pageSizeOptions]="[5,10,20,30,40,60,100]"
+          <mat-paginator #datasourceLiveStocksPaginator [pageSize] = "10" [pageSizeOptions] = "[1,2,5,10,20,30,40,60,100]" 
   showFirstLastButtons>
-</mat-paginator> -->
+</mat-paginator>
 </div>
 
 
@@ -111,7 +111,7 @@
 <h1 style="text-align:center" >Saved Recommendations</h1>
 <br>
 
-<table mat-table [dataSource]="liveStocks" class="mat-elevation-z8">
+<table mat-table [dataSource]="datasourceSavedStocks" class="mat-elevation-z8">
   <!--  Company Name Column -->
   <ng-container matColumnDef="company_name">
     <th mat-header-cell *matHeaderCellDef> Company Name </th>
@@ -145,8 +145,8 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<!-- <mat-paginator #paginator [pageSize] = "10" [pageSizeOptions]="[5,10,20,30,40,60,100]"
+<mat-paginator #datasourceSavedStocksPaginator [pageSize] = "10" [pageSizeOptions] = "[1,2,5,10,20,30,40,60,100]" 
 showFirstLastButtons>
-</mat-paginator> -->
+</mat-paginator>
 
 </div>
