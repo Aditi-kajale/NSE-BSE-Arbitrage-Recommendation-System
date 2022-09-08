@@ -1,9 +1,12 @@
 <mat-toolbar class = "col" style = "position: fixed;">
   <div class="example-label">
     <section>
-      <div class="button" class="example-button-row">
+      <div  class="example-button-row">
         <a class="button" href="/dashboard#dashboard">
-          <button class="button">Dashboard</button>
+          <button class="button">Top Recommendations</button>
+        </a>
+        <a class="button" href="/dashboard#live">
+          <button class="button">Live Data</button>
         </a>
         <a class="button" href="/dashboard#saved">
           <button class="button">Saved Recommendations</button>
@@ -19,42 +22,87 @@
 <br>
 <br>
 <br>
-<h1 style="text-align:center" >DashBoard</h1>
+<h1 style="text-align:center" >Top 5 Recommendations</h1>
 <br>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="topFive" class="mat-elevation-z8">
             <!--  Company Name Column -->
             <ng-container matColumnDef="company_name">
               <th mat-header-cell *matHeaderCellDef> Company Name </th>
-              <td mat-cell *matCellDef="let element"> {{element.company_name}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
             </ng-container>
           
             <!-- Close NSE Column -->
             <ng-container matColumnDef="close_nse">
               <th mat-header-cell *matHeaderCellDef> Close NSE </th>
-              <td mat-cell *matCellDef="let element"> {{element.close_nse}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.closeNSE}} </td>
             </ng-container>
           
             <!-- Close BSE Column -->
             <ng-container matColumnDef="close_bse">
               <th mat-header-cell *matHeaderCellDef> Close BSE </th>
-              <td mat-cell *matCellDef="let element"> {{element.close_bse}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.closeBSE}} </td>
             </ng-container>
           
             <!-- Difference Column -->
             <ng-container matColumnDef="difference">
               <th mat-header-cell *matHeaderCellDef> Difference </th>
-              <td mat-cell *matCellDef="let element"> {{element.difference}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.diff}} </td>
             </ng-container>
 
              <!-- Percentage Difference Column -->
              <ng-container matColumnDef="percent_diff">
               <th mat-header-cell *matHeaderCellDef>  Percentage Difference </th>
-              <td mat-cell *matCellDef="let element"> {{element.percent_diff}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.percDiff}} </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
 </div>
+
+<div style="padding:3em" id="live">
+  <br>
+  <br>
+  <br>
+<h1 style="text-align:center" >Live Data</h1>
+<br>
+<table mat-table [dataSource]="liveStocks" class="mat-elevation-z8">
+            <!--  Company Name Column -->
+            <ng-container matColumnDef="company_name">
+              <th mat-header-cell *matHeaderCellDef> Company Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+            </ng-container>
+          
+            <!-- Close NSE Column -->
+            <ng-container matColumnDef="close_nse">
+              <th mat-header-cell *matHeaderCellDef> Close NSE </th>
+              <td mat-cell *matCellDef="let element"> {{element.closeNSE}} </td>
+            </ng-container>
+          
+            <!-- Close BSE Column -->
+            <ng-container matColumnDef="close_bse">
+              <th mat-header-cell *matHeaderCellDef> Close BSE </th>
+              <td mat-cell *matCellDef="let element"> {{element.closeBSE}} </td>
+            </ng-container>
+          
+            <!-- Difference Column -->
+            <ng-container matColumnDef="difference">
+              <th mat-header-cell *matHeaderCellDef> Difference </th>
+              <td mat-cell *matCellDef="let element"> {{element.diff}} </td>
+            </ng-container>
+
+             <!-- Percentage Difference Column -->
+             <ng-container matColumnDef="percent_diff">
+              <th mat-header-cell *matHeaderCellDef>  Percentage Difference </th>
+              <td mat-cell *matCellDef="let element"> {{element.percDiff}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <!-- <mat-paginator #paginator [pageSize] = "10" [pageSizeOptions]="[5,10,20,30,40,60,100]"
+  showFirstLastButtons>
+</mat-paginator> -->
+</div>
+
 
 <div style="padding:3em" id="saved">
 <br>
@@ -63,37 +111,42 @@
 <h1 style="text-align:center" >Saved Recommendations</h1>
 <br>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="liveStocks" class="mat-elevation-z8">
   <!--  Company Name Column -->
   <ng-container matColumnDef="company_name">
     <th mat-header-cell *matHeaderCellDef> Company Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.company_name}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
   </ng-container>
 
   <!-- Close NSE Column -->
   <ng-container matColumnDef="close_nse">
     <th mat-header-cell *matHeaderCellDef> Close NSE </th>
-    <td mat-cell *matCellDef="let element"> {{element.close_nse}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.closeNSE}} </td>
   </ng-container>
 
   <!-- Close BSE Column -->
   <ng-container matColumnDef="close_bse">
     <th mat-header-cell *matHeaderCellDef> Close BSE </th>
-    <td mat-cell *matCellDef="let element"> {{element.close_bse}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.closeBSE}} </td>
   </ng-container>
 
   <!-- Difference Column -->
   <ng-container matColumnDef="difference">
     <th mat-header-cell *matHeaderCellDef> Difference </th>
-    <td mat-cell *matCellDef="let element"> {{element.difference}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.diff}} </td>
   </ng-container>
 
    <!-- Percentage Difference Column -->
    <ng-container matColumnDef="percent_diff">
     <th mat-header-cell *matHeaderCellDef>  Percentage Difference </th>
-    <td mat-cell *matCellDef="let element"> {{element.percent_diff}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.percDiff}} </td>
   </ng-container>
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<!-- <mat-paginator #paginator [pageSize] = "10" [pageSizeOptions]="[5,10,20,30,40,60,100]"
+showFirstLastButtons>
+</mat-paginator> -->
+
 </div>

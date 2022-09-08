@@ -130,6 +130,11 @@ public class MainController {
 		return processStocks.sendTopStocks();
 	}
 	
+	@RequestMapping("/liveStocks")
+	public List<Stock> sendLiveStocks(){
+		return processStocks.sendLiveStocks();
+	}
+	
 	@GetMapping("/findStock")
 	public List<Cart> findStocksFromDB(String username) {
 		return ucr.findAllStocks(curEmail);

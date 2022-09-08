@@ -1,30 +1,31 @@
-import { Component} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
+import { DashboardService } from '../dashboard.service';
+import { LiveStockService } from '../livestockservice.service';
+import {MatPaginator} from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit { 
   displayedColumns: string[] = ['company_name', 'close_nse', 'close_bse', 'difference', 'percent_diff'];
-  dataSource = ELEMENT_DATA;
+  topFive: any;
+  liveStocks: any;
+  constructor(private dashboardService: DashboardService, private liveStockService: LiveStockService) { }
+
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
+
+
+  ngOnInit() {
+    this.dashboardService.top().subscribe(data => {
+      this.topFive = data;
+    });
+    this.liveStockService.liveStocks().subscribe(data => {
+      this.liveStocks = data;
+    });
+    // this.liveStocks.paginator = this.paginator;
+  }
 }
-
-
-export interface PeriodicElement {
-  company_name: string;
-  close_nse: number;
-  close_bse: number;
-  difference: number;
-  percent_diff:number;
-}
-
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {company_name: '1', close_nse: 1, close_bse: 1,difference: 1,percent_diff: 1},
-  {company_name: '2', close_nse: 1, close_bse: 1,difference: 1,percent_diff: 1},
-  {company_name: '3', close_nse: 1, close_bse: 1,difference: 1,percent_diff: 1},
-  {company_name: '4', close_nse: 1, close_bse: 1,difference: 1,percent_diff: 1},
-  {company_name: '5', close_nse: 1, close_bse: 1,difference: 1,percent_diff: 1}
-];
 

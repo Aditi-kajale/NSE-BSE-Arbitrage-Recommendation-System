@@ -38,14 +38,7 @@
       background: linear-gradient(90deg, rgb(35, 78, 109) 0%, rgb(65, 34, 129) 100%);
       z-index:1; /*Add this*/
   }
-  .footer {
-      position: relative;
-      margin-top: -150px; /* negative value of footer height */
-      height: 150px;
-      clear:both;
-      padding-top:20px;
-    } 
-  
+
     .aboutus{
       color: #ffffff;
       

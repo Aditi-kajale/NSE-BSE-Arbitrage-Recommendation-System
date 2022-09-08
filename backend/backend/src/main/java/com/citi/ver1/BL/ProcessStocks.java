@@ -37,10 +37,21 @@ public class ProcessStocks {
 		
 		for(int i=0;i<5;i++) {
 			topFive.add(arbOpport.get(i));
-			System.out.println(topFive.get(i));
+		}
+		return topFive;
+	}
+	
+	public List<Stock> sendLiveStocks() {
+		try {
+			proc();
+		}
+		catch(Exception e) {
+			System.out.println(e);
 		}
 		return arbOpport;
 	}
+	
+	
 	public static void proc() throws InterruptedException, IOException{
 		String[] symbols = new String[] {
 				"APOLLOHOSP.NS","APOLLOHOSP.BO",

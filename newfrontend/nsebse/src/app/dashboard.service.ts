@@ -6,16 +6,16 @@ import {User} from './user';
 @Injectable({
   providedIn: 'root'
 })
-export class SignupserviceService {
-  private baseUrl = "http://localhost:9000/signUp";
+export class DashboardService {
+  private baseUrl = "http://localhost:9000/top";
   headers={
     headers: new HttpHeaders({
         'Content-Type': 'application/json'
     })
 }
   constructor(private httpClient: HttpClient) {}
-  
-  signUp(user: User):Observable<object>{
-    return this.httpClient.post(`${this.baseUrl}`, JSON.stringify(user), this.headers);
+
+  top(){
+    return this.httpClient.get(`${this.baseUrl}`);
   }
 }

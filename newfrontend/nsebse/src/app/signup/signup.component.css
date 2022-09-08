@@ -26,9 +26,6 @@
 label{
     color: #fff;
 }
-.foot{
-    padding-top: 80%;
-}
 
 body{
     background-color: #cdeaf7;
@@ -67,7 +64,7 @@ section {
     height: 40px;
     font-size: 18px;
     top: 100px;
-    background-color: #98c1d9;
+    /* background-color: #98c1d9; */
     border: none;
     border-radius: 8px;
     color: #FFF;
