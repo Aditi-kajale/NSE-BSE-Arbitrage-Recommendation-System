@@ -21,6 +21,7 @@ export class SignupComponent {
 
   submit(){
     if (this.form.valid) {
+      console.log(this.form.value);
     this.signupservice.signUp(this.form.value).subscribe(data=>{
       this.toast.success({detail: "Success Message", summary:"Sign Up Successful!", duration:5000});
       this.form.reset();
