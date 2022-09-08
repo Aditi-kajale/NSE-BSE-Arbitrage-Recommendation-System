@@ -1,50 +1,99 @@
+<mat-toolbar class = "col" style = "position: fixed;">
+  <div class="example-label">
+    <section>
+      <div class="button" class="example-button-row">
+        <a class="button" href="/dashboard#dashboard">
+          <button class="button">Dashboard</button>
+        </a>
+        <a class="button" href="/dashboard#saved">
+          <button class="button">Saved Recommendations</button>
+        </a>
+        <button class="button" [routerLink]="'/base'">Logout</button>
+      </div>
+  </section>
+</div>
+</mat-toolbar>
+
+
+<div style="padding:3em" id="dashboard">
 <br>
 <br>
-<h1 style="text-align:center">DashBoard</h1>
-<div style="padding:3em">
+<br>
+<h1 style="text-align:center" >DashBoard</h1>
+<br>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!--  Company Name Column -->
+            <ng-container matColumnDef="company_name">
+              <th mat-header-cell *matHeaderCellDef> Company Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.company_name}} </td>
+            </ng-container>
+          
+            <!-- Close NSE Column -->
+            <ng-container matColumnDef="close_nse">
+              <th mat-header-cell *matHeaderCellDef> Close NSE </th>
+              <td mat-cell *matCellDef="let element"> {{element.close_nse}} </td>
+            </ng-container>
+          
+            <!-- Close BSE Column -->
+            <ng-container matColumnDef="close_bse">
+              <th mat-header-cell *matHeaderCellDef> Close BSE </th>
+              <td mat-cell *matCellDef="let element"> {{element.close_bse}} </td>
+            </ng-container>
+          
+            <!-- Difference Column -->
+            <ng-container matColumnDef="difference">
+              <th mat-header-cell *matHeaderCellDef> Difference </th>
+              <td mat-cell *matCellDef="let element"> {{element.difference}} </td>
+            </ng-container>
 
-<mat-tab-group>
-    <mat-tab label="First">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-            <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-          
-            <!-- Position Column -->
-            <ng-container matColumnDef="position">
-              <th mat-header-cell *matHeaderCellDef> No. </th>
-              <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+             <!-- Percentage Difference Column -->
+             <ng-container matColumnDef="percent_diff">
+              <th mat-header-cell *matHeaderCellDef>  Percentage Difference </th>
+              <td mat-cell *matCellDef="let element"> {{element.percent_diff}} </td>
             </ng-container>
-          
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef> Name </th>
-              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-            </ng-container>
-          
-            <!-- Weight Column -->
-            <ng-container matColumnDef="weight">
-              <th mat-header-cell *matHeaderCellDef> Weight </th>
-              <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-            </ng-container>
-          
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="symbol">
-              <th mat-header-cell *matHeaderCellDef> Symbol </th>
-              <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-            </ng-container>
-          
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-          
+</div>
 
-    </mat-tab> 
-    <!-- tab 2-->
-    <mat-tab  label="Second">
-      
+<div style="padding:3em" id="saved">
+<br>
+<br>
+<br>
+<h1 style="text-align:center" >Saved Recommendations</h1>
+<br>
 
-    </mat-tab>
-  </mat-tab-group>
-  
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!--  Company Name Column -->
+  <ng-container matColumnDef="company_name">
+    <th mat-header-cell *matHeaderCellDef> Company Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.company_name}} </td>
+  </ng-container>
+
+  <!-- Close NSE Column -->
+  <ng-container matColumnDef="close_nse">
+    <th mat-header-cell *matHeaderCellDef> Close NSE </th>
+    <td mat-cell *matCellDef="let element"> {{element.close_nse}} </td>
+  </ng-container>
+
+  <!-- Close BSE Column -->
+  <ng-container matColumnDef="close_bse">
+    <th mat-header-cell *matHeaderCellDef> Close BSE </th>
+    <td mat-cell *matCellDef="let element"> {{element.close_bse}} </td>
+  </ng-container>
+
+  <!-- Difference Column -->
+  <ng-container matColumnDef="difference">
+    <th mat-header-cell *matHeaderCellDef> Difference </th>
+    <td mat-cell *matCellDef="let element"> {{element.difference}} </td>
+  </ng-container>
+
+   <!-- Percentage Difference Column -->
+   <ng-container matColumnDef="percent_diff">
+    <th mat-header-cell *matHeaderCellDef>  Percentage Difference </th>
+    <td mat-cell *matCellDef="let element"> {{element.percent_diff}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
 </div>

@@ -16,16 +16,24 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
 import { NgToastModule } from 'ng-angular-popup';
+import {MatToolbarModule} from '@angular/material/toolbar'; 
+import { BaseComponent } from './base/base.component';
+import {MatCardModule} from '@angular/material/card';
+
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    DashboardComponent
+    DashboardComponent,
+    BaseComponent
   ],
   imports: [
     BrowserModule,
+    MatCardModule,
+    MatInputModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -37,7 +45,8 @@ import { NgToastModule } from 'ng-angular-popup';
     MatIconModule,
     MatPaginatorModule,
     MatSelectModule,
-    NgToastModule
+    NgToastModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -17,7 +17,6 @@ public class LoginService {
 		loginRepo.save(userD);
 	}
 	public List<User> findUserFromDB(String email, String password) {
-		// TODO Auto-generated method stub
 		return loginRepo.findUser(email, password);
 	}
 	

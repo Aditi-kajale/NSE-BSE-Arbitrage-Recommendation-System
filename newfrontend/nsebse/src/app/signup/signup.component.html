@@ -3,58 +3,42 @@
 
 
     <body>
-            <div class="d-flex flex-column" style="min-height: 100vh;">
-                <nav class="navbar navclass" style ="position: fixed">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" style = "margin-left:460px; float: none; text-align:center; color: #fff;" href="#">BSE/NSE Arbitrage Recommendation System</a>
-                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                      </button>
-                      <div class="collapse navbar-collapse" id="navbarSupportedContent"> </div>
-                      <ul class="nav navbar-right">
-                        <div class="d-flex flex-row-reverse bd-highlight  style=margin-left:80px;">
-                            <a class="nav-link active" aria-current="page" href="#bot" style="margin-right:70px; color: #fff;">Contact Us</a>
-                          </div>
-                      </ul>
-                    </div>
-                </nav> 
+                <mat-toolbar class = "col"style = "position: fixed; top: 0px; left:0px; width: 100%">
+                    <div class="example-label">
+                      <section>
+                        <div class="button1" class="example-button-row">
+                          <button class="button1" [routerLink]="'/base'">Home</button>
+                              <button class="button1"  [routerLink]="'/login'">Login</button>
+                        </div>
+                    </section>
+                  </div>
+                </mat-toolbar>
+
     <section class="signupSec">
-    <div class="container ">
-        <div class="row ">
-            <div class="col-md-6">
-                <div class="card-deck">
-                    <div class="card card_about ">
-                        <div class="text-center">
-                            <h2>About Us</h2>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        
-                    </div>
-                <div class="card card_sign">
-                    <div class="text-center">
-                        <h1>Signup</h1>
-                        <h6>Register Yourself!</h6>
-                    </div>
-                    <form [formGroup]="signupForm" (ngSubmit) = "signUp()">
-                        <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">Email address</label>
-                          <input formControlName="email" [(ngModel)] = "user.email" type="email"class="form-control" id="email" aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                          <label for="exampleInputPassword1" class="form-label">Password</label>
-                          <input formControlName="password" [(ngModel)] = "user.password" type="password" class="form-control" id="password">
-                        </div>
-                        <button type="submit" class="btn btn-primary mb-2">Sign Up</button>
-                    </form>
-                    <a style="color: #fff;" routerLink="/login">Already Registered? Click here to Login</a>
-                </div>
-            </div>
-        </div>
-    </div>
-  
-</div>
+                <mat-card>
+                    <mat-card-title>Sign Up</mat-card-title>
+              <mat-card-content>
+                <form [formGroup]="form" (ngSubmit)="submit()">
+                  <p>
+                    <mat-form-field>
+                      <input type="text" matInput placeholder="Email" formControlName="email">
+                    </mat-form-field>
+                  </p>
+        
+                  <p>
+                    <mat-form-field>
+                      <input type="password" matInput placeholder="Password" formControlName="password">
+                    </mat-form-field>
+                  </p>
+        
+                  <div class="button">
+                    <button type="submit" mat-button style="color: #000; border: 0px; font-size: 16px; background-color: white;">Submit</button>
+                  </div>
+        
+                </form>
+              </mat-card-content>
+            </mat-card>
 
 </section >
-</div>
 </body> 
     

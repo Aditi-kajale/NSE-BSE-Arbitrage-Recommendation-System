@@ -50,4 +50,65 @@
       color: #ffffff;
       
     }
+
+    section {
+        display: table;
+      }
+      
+      .example-label {
+        display: table-cell;
+        font-size: 14px;
+        margin-left: 8px;
+        min-width: 120px;;
+      }
+      
+      .example-button-row {
+        display: table-cell;
+        width: 490px;
+        left: 5px;
+      }
+      .button1 {
+        margin-right: 15px;
+        margin-left:15px;
+        height: 40px;
+        font-size: 18px;
+        top: 100px;
+        background-color: #98c1d9;
+        border: none;
+        border-radius: 8px;
+        color: #FFF;
+      }
+    
+    .col {
+        background-color: #98c1d9;
+    }
+
+    :host {
+        display: flex;
+        justify-content: center;
+        margin: 100px 0px;
+      }
+    
+      .mat-form-field {
+        width: 100%;
+        min-width: 300px;
+      }
+    
+      mat-card-title,
+      mat-card-content {
+        display: flex;
+        justify-content: center;
+      }
+    
+    
+      .button {
+        display: flex;
+        justify-content: flex-end;
+      }
+    
+    
+    
+      
+
+
   
