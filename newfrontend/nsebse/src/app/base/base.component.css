@@ -250,6 +250,7 @@ h2{
 .fl-table td, .fl-table th {
   text-align: center;
   padding: 8px;
+  width: 20%;
 }
 
 .fl-table td {
@@ -273,7 +274,7 @@ h2{
 }
 
 /* Responsive */
-/* 
+
 @media (max-width: 767px) {
   .fl-table {
       display: block;
@@ -337,4 +338,4 @@ h2{
       text-align: center;
   }
 }
- */
+
