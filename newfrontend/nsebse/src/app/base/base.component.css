@@ -1,31 +1,47 @@
 section {
-    display: table;
-  }
-  
-  .example-label {
-    display: table-cell;
-    font-size: 14px;
-    margin-left: 8px;
-    min-width: 120px;;
-  }
-  
-  .example-button-row {
-    display: table-cell;
-    width: 490px;
-    left: 5px;
-  }
-  .button1 {
-    margin-right: 15px;
-    margin-left:15px;
-    height: 40px;
-    font-size: 18px;
-    top: 100px;
-    background-color: #98c1d9;
-    border: none;
-    border-radius: 8px;
-    color: #FFF;
-  }
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+  left: 5px;
+}
+.button1 {
+  margin-right: 15px;
+  margin-left:15px;
+  height: 40px;
+  font-size: 18px;
+  top: 100px;
+  background-color: #7eafcb;
+  border: none;
+  border-radius: 8px;
+  color: #FFF;
+}
 
 .col {
-    background-color: #98c1d9;
+  background-color: #7eafcb;
 }
+
+mat-card{
+width: 400px;
+height: 160px;
+display: block;
+margin-left:auto;
+margin-right:auto;  
+}
+.home {
+margin-top: 1.0rem;
+}
+
+button:focus {
+outline: none;
+}
+

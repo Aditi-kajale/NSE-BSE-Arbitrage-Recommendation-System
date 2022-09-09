@@ -4,7 +4,7 @@
 }
   table {
     width: 100%;
-   
+    background-color: rgb(246, 248, 250);
   
   }
   .mat-form-field {
@@ -37,12 +37,18 @@
     height: 40px;
     font-size: 18px;
     top: 100px;
-    background-color: #98c1d9;
+    background-color: #7eafcb;
     border: none;
     border-radius: 8px;
     color: #FFF;
   }
 
 .col {
-    background-color: #98c1d9;
+    background-color: #7eafcb;
+}
+tr:hover td {
+  background: #e5f2fa !important;
+}
+th {
+  background: rgb(229, 242, 247) !important;
 }
