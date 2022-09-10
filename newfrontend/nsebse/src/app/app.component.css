@@ -11,19 +11,17 @@ body{
 
 
 
-/*--------------footer------------------*/
 .footer-distributed {
-  background-color: #7eafcb;
+  background-color: #000;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   width: 100%;
   text-align: left;
-  font: bold 16px sans-serif;
-
-  padding: 20px 50px 50px 50px;
-  
-bottom:0px
-  
+  font: bold 14px sans-serif;
+  height: 100px;
+  padding: 10px 50px 50px 50px;
+  position: relative;
+  bottom:0px;
 }
 
 .footer-distributed .footer-left,

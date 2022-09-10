@@ -99,3 +99,8 @@ mat-card-content {
 
 
 
+body{
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+}
