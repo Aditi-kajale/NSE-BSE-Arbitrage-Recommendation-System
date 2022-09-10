@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { LoginserviceService } from '../loginservice.service';
-import { User } from '../user';
-import {Router} from '@angular/router';
-import {NgToastService } from 'ng-angular-popup';
+import { Component} from '@angular/core';
+
+import { MatTableDataSource } from '@angular/material/table';
+import { DashboardService } from '../dashboard.service';
 
 @Component({
   selector: 'app-login',
@@ -11,5 +9,16 @@ import {NgToastService } from 'ng-angular-popup';
   styleUrls: ['./base.component.css']
 })
 export class BaseComponent {
-  
+  displayedColumns: string[] = ['company_name', 'close_nse', 'close_bse', 'difference', 'percent_diff'];
+  datasourceTopFive: MatTableDataSource<any> = new MatTableDataSource();
+
+  constructor(private dashboardService: DashboardService) { }
+  topFive: any;
+
+  ngOnInit(): void {
+    this.dashboardService.top().subscribe(data => {
+      this.topFive = data;
+      this.datasourceTopFive.data = this.topFive;
+    });
+  }
 }

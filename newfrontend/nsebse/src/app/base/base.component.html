@@ -8,11 +8,8 @@
             <a class="button1" href="/base#home">
               <button class="button1">Home</button>
             </a>
-            <a class="button1" href="/base#faq">
-              <button class="button1">FAQ</button>
-            </a>
-            <a class="button1" href="/base#about">
-              <button class="button1">About Us</button>
+            <a class="button1" href="/base#recommendations">
+              <button class="button1">Recommendations</button>
             </a>
             <button class="button1" [routerLink]="'/login'">Login</button>
             <button class="button1" [routerLink]="'/signup'">
@@ -21,7 +18,8 @@
           </div>
         </section>
       </div>
-    </mat-toolbar>
+    </mat-toolbar> 
+
     <br />
     <br />
     <br />
@@ -32,49 +30,69 @@
       <br />
       <br />
       <h1 style="text-align: center">NSE BSE Recommendation System LOGO</h1> 
-
+    </div>
+    <br />
+    <br />
+    <div id="recommendations">
+      <br />
+      <br />
+      <br />
+      <br />
+      <h1 style="text-align: center">Top 5 Recommendations</h1>
+      <table style = "width: 95%; margin-left: auto; margin-right: auto;"mat-table [dataSource]="datasourceTopFive" class="mat-elevation-z8">
+        <!--  Company Name Column -->
+        <ng-container matColumnDef="company_name">
+          <th mat-header-cell *matHeaderCellDef> Company Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+        </ng-container>
       
+        <!-- Close NSE Column -->
+        <ng-container matColumnDef="close_nse">
+          <th mat-header-cell *matHeaderCellDef> Close NSE </th>
+          <td mat-cell *matCellDef="let element"> {{element.closeNSE}} </td>
+        </ng-container>
+      
+        <!-- Close BSE Column -->
+        <ng-container matColumnDef="close_bse">
+          <th mat-header-cell *matHeaderCellDef> Close BSE </th>
+          <td mat-cell *matCellDef="let element"> {{element.closeBSE}} </td>
+        </ng-container>
+      
+        <!-- Difference Column -->
+        <ng-container matColumnDef="difference">
+          <th mat-header-cell *matHeaderCellDef> Difference </th>
+          <td mat-cell *matCellDef="let element"> {{element.diff}} </td>
+        </ng-container>
+
+         <!-- Percentage Difference Column -->
+         <ng-container matColumnDef="percent_diff">
+          <th mat-header-cell *matHeaderCellDef>  Percentage Difference </th>
+          <td mat-cell *matCellDef="let element"> {{element.percDiff}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
 
     </div>
-    <br />
-    <br />
-    <div id="faq">
-      <br />
-      <br />
-      <br />
-      <br />
-      <h1 style="text-align: center">FAQ</h1>
-     
+    <br>
+    <br>
+    <br>
 
+  <footer class="footer-distributed">
 
-
-
-
+    <div class="footer-left">
+  
+      <p class="footer-links" style = "color: #20526b;">
+        <a href="#home">Home</a> ·
+        <a href="#recommendations"> View Recommendations</a>
+      </p>
+  
+      <p class="footer-company-name" style = "color: #20526b;">Copyright &copy; CitiBridge Group 8</p>
     </div>
-
-    <br />
-    <br />
-    <div id="about">
-      <br />
-      <br />
-      <br />
-      <br />
-      <h1 style="text-align: center">About Us</h1>
-      <br />
-      <br />
-
-      <mat-card style="background-color: rgb(241, 249, 251);"> <mat-card-content style="font-size: 18px; font-family: Arial, Helvetica, sans-serif;">
-        <pre>
-      CitiBridge Group 8 Team Members
-
-          1. Aditi Kajale
-          2. Gayatri Chaudhari
-          3. Mugdha Tagare
-          4. Rutuja Wasu
-          5. Siddhi Bhutada 
-          </pre>
-      </mat-card-content></mat-card>
-    </div>
+  
+    
+  </footer>
+  
   </body>
 </html>
 
