@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SaveStockService } from '../savestockservice.service';
 import {NgToastService } from 'ng-angular-popup';
 import { CookieService } from 'ngx-cookie-service';
+import { SavedStockService } from '../savedstockservice.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,11 +16,12 @@ import { CookieService } from 'ngx-cookie-service';
 export class DashboardComponent implements OnInit { 
   displayedColumns: string[] = ['company_name', 'close_nse', 'close_bse', 'difference', 'percent_diff', 'save'];
   displayedColumns1: string[] = ['company_name', 'close_nse', 'close_bse', 'difference', 'percent_diff'];
+  displayedColumns2: string[] = ['company_name', 'close_nse', 'close_bse', 'difference', 'percent_diff', 'date_time'];
   datasourceSavedStocks: MatTableDataSource<any> = new MatTableDataSource();
   datasourceLiveStocks: MatTableDataSource<any> = new MatTableDataSource();
   datasourceTopFive: MatTableDataSource<any> = new MatTableDataSource();
 
-  constructor(private toast: NgToastService, private dashboardService: DashboardService, private liveStockService: LiveStockService, private saveStockService: SaveStockService, private cookieService: CookieService) { }
+  constructor(private toast: NgToastService, private dashboardService: DashboardService, private liveStockService: LiveStockService, private saveStockService: SaveStockService, private cookieService: CookieService, private savedStockService: SavedStockService) { }
 
 
   saveStock(companyName: String, closeBSE: Number, closeNSE: Number, diff: Number, percDiff: Number){
@@ -61,7 +63,7 @@ export class DashboardComponent implements OnInit {
       });
 
 
-      this.liveStockService.liveStocks().subscribe(data => {
+      this.savedStockService.savedStocks(this.cookieService.get('email')).subscribe(data => {
         this.savedStocks = data;
         this.datasourceSavedStocks.data = this.savedStocks;
         });

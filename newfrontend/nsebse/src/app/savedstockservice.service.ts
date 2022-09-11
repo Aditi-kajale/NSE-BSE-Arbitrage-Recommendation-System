@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class LiveStockService {
-  private baseUrl = "http://localhost:9000/liveStocks";
+export class SavedStockService {
+  private baseUrl = "http://localhost:9000/savedStocks";
   headers={
     headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -13,7 +13,10 @@ export class LiveStockService {
 }
   constructor(private httpClient: HttpClient) {}
 
-  liveStocks(){
-    return this.httpClient.get(`${this.baseUrl}`);
+  savedStocks(email: String){
+    let obj = {
+        email: email
+    }
+    return this.httpClient.post(`${this.baseUrl}`, JSON.stringify(obj), this.headers);
   }
 }
