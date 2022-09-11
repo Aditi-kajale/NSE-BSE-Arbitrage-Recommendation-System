@@ -4,6 +4,7 @@ import { LoginserviceService } from '../loginservice.service';
 import {Router} from '@angular/router';
 import {NgToastService } from 'ng-angular-popup';
 import {FormControl} from '@angular/forms';
+import { User } from '../user';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent{
+  user: User;
   form: FormGroup = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),

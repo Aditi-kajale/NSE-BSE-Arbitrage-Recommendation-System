@@ -46,9 +46,19 @@
 .col {
     background-color: #7eafcb;
 }
-tr:hover td {
+tr:hover td{
   background: #e5f2fa !important;
 }
+button2{
+  background: #e5f2fa !important;
+}
+
 th {
   background: rgb(229, 242, 247) !important;
+}
+
+
+
+td, th {
+  width: 18%;
 }

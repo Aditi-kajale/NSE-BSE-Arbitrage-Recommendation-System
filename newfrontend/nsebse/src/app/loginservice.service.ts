@@ -15,8 +15,6 @@ export class LoginserviceService {
 }
   constructor(private httpClient: HttpClient) {}
   Login(user: User):Observable<object>{
-    console.log(user.email);
-    console.log(user.password);
     return this.httpClient.post(`${this.baseUrl}`, JSON.stringify(user), this.headers);
   }
 }
