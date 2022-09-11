@@ -81,12 +81,13 @@
           <td mat-cell *matCellDef="let element"> {{element.closeBSE}} </td>
         </ng-container>
 
-
         <ng-container matColumnDef="higher">
-          <th mat-header-cell *matHeaderCellDef> Higher </th>
+          <th mat-header-cell *matHeaderCellDef> Higher (NSE / BSE)</th>
           <ng-container *matCellDef="let element" class ="cell">
               <td mat-cell *ngIf="element.closeNSE > element.closeBSE"> NSE </td>
               <td mat-cell *ngIf="element.closeNSE < element.closeBSE"> BSE </td>
+              <td mat-cell *ngIf="element.closeNSE == element.closeBSE"> Equal </td>
+
           </ng-container>
       </ng-container>
 
