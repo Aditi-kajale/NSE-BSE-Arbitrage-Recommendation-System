@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {NgToastService } from 'ng-angular-popup';
 import {FormControl} from '@angular/forms';
 import { User } from '../user';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -17,13 +18,22 @@ export class LoginComponent{
     email: new FormControl(''),
     password: new FormControl(''),
   });
-  constructor(private toast: NgToastService, private loginservice: LoginserviceService, private formBuilder: FormBuilder,private router: Router) { }
+  constructor(private toast: NgToastService, private loginservice: LoginserviceService, private formBuilder: FormBuilder,private router: Router, private cookieService: CookieService ) { }
 
   submit(){
     this.loginservice.Login(this.form.value).subscribe(data=>{
       this.toast.success({detail: "Success Message", summary:"Login Successful!", duration:5000});
+      this.cookieService.set('email', this.form.value.email );
+      console.log(this.cookieService.get('email') === "");
       this.form.reset();
       this.router.navigateByUrl('/dashboard');
     }, error=>this.toast.error({detail: "Error Message", summary:"Login Failed, Try again!", duration:5000}));
   }
+
+  
+ngOnInit(): void {
+  
 }
+
+}
+

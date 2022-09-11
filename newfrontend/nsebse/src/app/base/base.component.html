@@ -11,10 +11,31 @@
             <a class="button1" href="/base#recommendations">
               <button class="button1" >Recommendations</button>
             </a>
-            <button class="button1" [routerLink]="'/login'">Login</button>
-            <button class="button1" [routerLink]="'/signup'">
-              Create Account
+            <ng-container *ngIf="showDashboard()">
+              <button class="button1" [routerLink]="'/dashboard'">
+                Change Account
+              </button>
+            </ng-container>
+
+            <ng-container *ngIf="!showDashboard()">
+              <button class="button1" [routerLink]="'/login'">Login</button>
+            </ng-container>
+
+            <ng-container *ngIf="!showDashboard()">
+              <button class="button1" [routerLink]="'/signup'">
+                Create Account
+              </button>
+            </ng-container>
+
+            
+            
+            
+
+          <ng-container *ngIf="showDashboard()">
+            <button class="button1" [routerLink]="'/dashboard'">
+              Dashboard
             </button>
+          </ng-container>
           </div>
         </section>
       </div>

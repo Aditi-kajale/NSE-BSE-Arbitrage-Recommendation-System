@@ -19,7 +19,7 @@ import { NgToastModule } from 'ng-angular-popup';
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 import { BaseComponent } from './base/base.component';
 import {MatCardModule} from '@angular/material/card';
-
+import { CookieService } from 'ngx-cookie-service';
 import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
@@ -48,7 +48,7 @@ import {MatInputModule} from '@angular/material/input';
     NgToastModule,
     MatToolbarModule
   ],
-  providers: [],
+  providers:  [ CookieService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

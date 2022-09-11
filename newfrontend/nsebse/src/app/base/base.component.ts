@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-
+import { CookieService } from 'ngx-cookie-service';
 import { MatTableDataSource } from '@angular/material/table';
 import { DashboardService } from '../dashboard.service';
 
@@ -12,7 +12,7 @@ export class BaseComponent {
   displayedColumns: string[] = ['company_name', 'close_nse', 'close_bse', 'difference', 'percent_diff'];
   datasourceTopFive: MatTableDataSource<any> = new MatTableDataSource();
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService, private cookieService: CookieService) { }
   topFive: any;
 
   ngOnInit(): void {
@@ -20,5 +20,8 @@ export class BaseComponent {
       this.topFive = data;
       this.datasourceTopFive.data = this.topFive;
     });
+  }
+  showDashboard() :Boolean {
+    return this.cookieService.get('email') !== "";
   }
 }

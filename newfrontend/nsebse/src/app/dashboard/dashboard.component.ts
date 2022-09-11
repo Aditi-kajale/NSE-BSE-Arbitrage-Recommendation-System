@@ -5,6 +5,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { SaveStockService } from '../savestockservice.service';
 import {NgToastService } from 'ng-angular-popup';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,11 +19,11 @@ export class DashboardComponent implements OnInit {
   datasourceLiveStocks: MatTableDataSource<any> = new MatTableDataSource();
   datasourceTopFive: MatTableDataSource<any> = new MatTableDataSource();
 
-  constructor(private toast: NgToastService, private dashboardService: DashboardService, private liveStockService: LiveStockService, private saveStockService: SaveStockService) { }
+  constructor(private toast: NgToastService, private dashboardService: DashboardService, private liveStockService: LiveStockService, private saveStockService: SaveStockService, private cookieService: CookieService) { }
 
 
-  saveStock(){
-    this.saveStockService.saveStock("as", "tp", 12, 1, 11, 12).subscribe(data=>{
+  saveStock(companyName: String, closeBSE: Number, closeNSE: Number, diff: Number, percDiff: Number){
+    this.saveStockService.saveStock(this.cookieService.get('email'), companyName, closeBSE, closeNSE, diff, percDiff).subscribe(data=>{
       this.toast.success({detail: "Success Message", summary:"Saved Successfully!", duration:5000});
     }, error=>this.toast.error({detail: "Error Message", summary:"Failed to Save, Try again!", duration:5000}));
   }
@@ -65,6 +66,8 @@ export class DashboardComponent implements OnInit {
         this.datasourceSavedStocks.data = this.savedStocks;
         });
   }
-
+  logout() {
+    this.cookieService.delete('email');
+  }
 }
 

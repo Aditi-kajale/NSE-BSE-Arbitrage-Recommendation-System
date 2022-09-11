@@ -2,6 +2,9 @@
   <div class="example-label">
     <section>
       <div  class="example-button-row">
+        <button class="button1" [routerLink]="'/base'">
+          Home
+        </button>
         <a class="button1" href="/dashboard#dashboard">
           <button class="button1">Top Recommendations</button>
         </a>
@@ -11,7 +14,7 @@
         <a class="button1" href="/dashboard#saved">
           <button class="button1">Saved Recommendations</button>
         </a>
-        <button class="button1" [routerLink]="'/base'">Logout</button>
+        <button class="button1" [routerLink]="'/base'" (click)="logout()">Logout</button>
       </div>
   </section>
 </div>
@@ -24,22 +27,6 @@
 <br>
 <h1 style="text-align:center" >Top 5 Recommendations</h1>
 <br>
-<!-- 
-<table mat-table [dataSource]="datasourceTopFive" class="mat-elevation-z8">
-  <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
-    <th id="head" mat-header-cell *matHeaderCellDef>{{ column }}</th>
-
-    <ng-container *ngIf="column != 'save'; else optionsTemplate">
-      <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
-    </ng-container>
-
-    <ng-template #optionsTemplate>
-      <td mat-cell *matCellDef="let element" class="action-link">
-        <a>Save</a>
-      </td>
-    </ng-template>
-  </ng-container>
-</table> -->
 
 
 <table mat-table [dataSource]="datasourceTopFive" class="mat-elevation-z8">
@@ -76,7 +63,7 @@
 
             <ng-container matColumnDef="save">
               <th mat-header-cell *matHeaderCellDef> Save Recommendation </th>
-              <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" style = "border: 0px; background-color: rgb(246, 248, 250);" class = "button2" (click)="saveStock()">Save</button> </td>
+              <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" style = "border: 0px; background-color: rgb(246, 248, 250);" class = "button2" (click)="saveStock(element.companyName, element.closeBSE, element.closeNSE, element.diff, element.percDiff)">Save</button> </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

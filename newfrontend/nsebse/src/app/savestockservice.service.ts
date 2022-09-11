@@ -6,16 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SaveStockService {
-//   private baseUrl = "http://localhost:9000/save";
   headers={
     headers: new HttpHeaders({
         'Content-Type': 'application/json'
     })
 }
   constructor(private httpClient: HttpClient) {}
-
-  private baseUrl = "http://localhost:9000/save";
-
 
   saveStock(email: String, companyName: String, closeBse: Number, closeNse: Number, difference: Number, percentDiff: Number):Observable<object>{
     let obj = {
