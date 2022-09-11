@@ -4,12 +4,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { BaseComponent } from './base/base.component';
+import { Guard } from './guard';
 
 const routes: Routes = [
   {path:'', redirectTo:'base', pathMatch:'full'},
   {path:'login', component:LoginComponent},
   {path:'signup', component:SignupComponent},
-  {path:'dashboard', component:DashboardComponent},
+  {path:'dashboard', component:DashboardComponent, canActivate: [Guard]},
   {path:'base', component:BaseComponent}
 ];
 

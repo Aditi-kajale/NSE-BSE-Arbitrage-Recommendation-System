@@ -23,10 +23,10 @@ export class SignupComponent {
     if (this.form.valid) {
       console.log(this.form.value);
     this.signupservice.signUp(this.form.value).subscribe(data=>{
-      this.toast.success({detail: "Success Message", summary:"Sign Up Successful!", duration:5000});
+      this.toast.success({summary:"Sign Up Successful!", duration:5000});
       this.form.reset();
       this.router.navigateByUrl('/login');
-    }, error=>this.toast.error({detail: "Error Message", summary:"Sign Up Failed, Try again!", duration:5000}));
+    }, error=>this.toast.error({summary:"Sign Up Failed, Try again!", duration:5000}));
   }
   }
 }

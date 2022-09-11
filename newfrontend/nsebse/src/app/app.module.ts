@@ -21,6 +21,7 @@ import { BaseComponent } from './base/base.component';
 import {MatCardModule} from '@angular/material/card';
 import { CookieService } from 'ngx-cookie-service';
 import {MatInputModule} from '@angular/material/input';
+import { Guard } from './guard';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import {MatInputModule} from '@angular/material/input';
     NgToastModule,
     MatToolbarModule
   ],
-  providers:  [ CookieService ],
+  providers:  [ CookieService, Guard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
