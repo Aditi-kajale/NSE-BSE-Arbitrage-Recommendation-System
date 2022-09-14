@@ -45,3 +45,6 @@ button:focus {
 outline: none;
 }
 
+td.company, th.company{
+  width: 25%;
+} 

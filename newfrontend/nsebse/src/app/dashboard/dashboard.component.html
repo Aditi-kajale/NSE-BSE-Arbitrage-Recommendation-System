@@ -72,11 +72,11 @@
               <td mat-cell *matCellDef="let element"> {{element.percDiff}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="quantity" style="width: 1%">
-              <th mat-header-cell *matHeaderCellDef>Quantity </th>
-              <td mat-cell *matCellDef="let element">
+            <ng-container matColumnDef="quantity">
+              <th mat-header-cell *matHeaderCellDef style="width: 10%">Quantity </th>
+              <td mat-cell *matCellDef="let element" style="width: 10%">
                 <mat-form-field>
-                  <input matInput type="number" [(ngModel)]="element.quantity" placeholder="Enter quantity" name="quantity" id="quantity">
+                  <input matInput size="3"  maxlength="4" type="number" [(ngModel)]="element.quantity" placeholder="Enter quantity" name="quantity" id="quantity">
                 </mat-form-field>
               </td>
             </ng-container>
@@ -169,15 +169,15 @@
   </ng-container>
 
   <!-- Close NSE Column -->
-  <ng-container matColumnDef="close_nse">
-    <th mat-header-cell *matHeaderCellDef> NSE Price (RS) </th>
-    <td mat-cell *matCellDef="let element"> {{element.closeNSE}} </td>
+  <ng-container matColumnDef="close_nse" >
+    <th mat-header-cell *matHeaderCellDef style="width: 10%;"> NSE Price (RS) </th>
+    <td mat-cell *matCellDef="let element" style="width: 10%;"> {{element.closeNSE}} </td>
   </ng-container>
 
   <!-- Close BSE Column -->
   <ng-container matColumnDef="close_bse">
-    <th mat-header-cell *matHeaderCellDef> BSE Price (RS) </th>
-    <td mat-cell *matCellDef="let element"> {{element.closeBSE}} </td>
+    <th mat-header-cell *matHeaderCellDef style="width: 10%;"> BSE Price (RS) </th>
+    <td mat-cell *matCellDef="let element" style="width: 10%;"> {{element.closeBSE}} </td>
   </ng-container>
 
   <ng-container matColumnDef="higher">
@@ -200,8 +200,8 @@
 
   <!-- Difference Column -->
   <ng-container matColumnDef="difference">
-    <th mat-header-cell *matHeaderCellDef> Difference </th>
-    <td mat-cell *matCellDef="let element"> {{element.diff}} </td>
+    <th mat-header-cell *matHeaderCellDef style="width: 10%;"> Difference </th>
+    <td mat-cell *matCellDef="let element" style="width: 10%;"> {{element.diff}} </td>
   </ng-container>
 
    <!-- Percentage Difference Column -->
@@ -215,6 +215,12 @@
    <ng-container matColumnDef="quantity">
     <th mat-header-cell *matHeaderCellDef>  Quantity</th>
     <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef> Delete </th>
+    <td mat-cell *matCellDef="let element"> 
+      <button mat-raised-button color="primary" style = "border: 0px; background-color: rgb(246, 248, 250);" class = "button2" (click)="deleteStock(element.companyName, element.closeBSE, element.closeNSE, element.diff, element.percDiff, element.quantity)">Delete</button> </td>
   </ng-container>
 
 

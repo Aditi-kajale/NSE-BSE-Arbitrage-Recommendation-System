@@ -65,8 +65,8 @@
       <table style = "width: 95%; margin-left: auto; margin-right: auto;"mat-table [dataSource]="datasourceTopFive" class="mat-elevation-z8">
         <!--  Company Name Column -->
         <ng-container matColumnDef="company_name">
-          <th mat-header-cell *matHeaderCellDef> Company </th>
-          <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+          <th mat-header-cell *matHeaderCellDef class="company"> Company </th>
+          <td mat-cell *matCellDef="let element" class="company"> {{element.companyName}} </td>
         </ng-container>
       
         <!-- Close NSE Column -->

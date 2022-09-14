@@ -26,4 +26,21 @@ export class SaveStockService {
     }
     return this.httpClient.post("http://localhost:9000/save", JSON.stringify(obj), this.headers);
   }
+
+
+
+  deleteStock(email: String, companyName: String, closeBse: Number, closeNse: Number, difference: Number, percentDiff: Number, quantity: Number):Observable<object>{
+    let obj = {
+        email: email,
+        companyName: companyName,
+        closeBSE: closeBse,
+        closeNSE: closeNse,
+        diff: difference,
+        percDiff: percentDiff,
+        dateTime: "",
+        quantity: quantity
+    }
+    return this.httpClient.post("http://localhost:9000/delete", JSON.stringify(obj), this.headers);
+  }
+
 }

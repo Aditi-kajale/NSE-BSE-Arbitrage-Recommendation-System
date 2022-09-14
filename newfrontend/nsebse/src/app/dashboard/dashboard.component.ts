@@ -17,7 +17,7 @@ import { SavedStockService } from '../savedstockservice.service';
 export class DashboardComponent implements OnInit{ 
   displayedColumns: string[] = ['company_name', 'close_nse', 'close_bse', 'higher', 'percent_diff', 'difference', 'quantity', 'save'];
   displayedColumns1: string[] = ['company_name', 'close_nse', 'close_bse', 'higher',  'percent_diff', 'difference'];
-  displayedColumns2: string[] = ['company_name', 'close_nse', 'close_bse', 'higher', 'date_time', 'percent_diff', 'difference', 'quantity'];
+  displayedColumns2: string[] = ['company_name', 'close_nse', 'close_bse', 'higher', 'date_time', 'percent_diff', 'difference', 'quantity', 'delete'];
   datasourceSavedStocks: MatTableDataSource<any> = new MatTableDataSource();
   datasourceLiveStocks: MatTableDataSource<any> = new MatTableDataSource();
   datasourceTopFive: MatTableDataSource<any> = new MatTableDataSource();
@@ -26,9 +26,16 @@ export class DashboardComponent implements OnInit{
 
   saveStock(companyName: String, closeBSE: Number, closeNSE: Number, diff: Number, percDiff: Number, quantity: Number){
     this.saveStockService.saveStock(this.cookieService.get('email'), companyName, closeBSE, closeNSE, diff, percDiff, quantity).subscribe(data=>{
-      this.toast.success({detail: "Success Message", summary:"Saved Successfully!", duration:5000});
-    }, error=>this.toast.error({detail: "Error Message", summary:"Failed to Save, Try again!", duration:5000}));
+      this.toast.success({summary:"Saved Successfully!", duration:5000});
+    }, error=>this.toast.error({ summary:"Failed to Save, Try again!", duration:5000}));
   }
+
+  deleteStock(companyName: String, closeBSE: Number, closeNSE: Number, diff: Number, percDiff: Number, quantity: Number){
+    this.saveStockService.deleteStock(this.cookieService.get('email'), companyName, closeBSE, closeNSE, diff, percDiff, quantity).subscribe(data=>{
+      this.toast.success({summary:"Deleted Successfully!", duration:5000});
+    }, error=>this.toast.error({ summary:"Failed to Delete, Try again!", duration:5000}));
+  }
+
 
   interval: number = 10;
   savedStocks: any;

@@ -65,3 +65,10 @@ td, th {
 td.company, th.company{
   width: 25%;
 } 
+
+input[type=number]{
+  /* Set width to 40characters */
+  width: 40ch;
+  /* prevent overflow of container */
+  max-width: 100%; 
+}
