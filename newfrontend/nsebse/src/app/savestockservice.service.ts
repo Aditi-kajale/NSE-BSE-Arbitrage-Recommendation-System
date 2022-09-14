@@ -13,7 +13,7 @@ export class SaveStockService {
 }
   constructor(private httpClient: HttpClient) {}
 
-  saveStock(email: String, companyName: String, closeBse: Number, closeNse: Number, difference: Number, percentDiff: Number):Observable<object>{
+  saveStock(email: String, companyName: String, closeBse: Number, closeNse: Number, difference: Number, percentDiff: Number, quantity: Number):Observable<object>{
     let obj = {
         email: email,
         companyName: companyName,
@@ -21,7 +21,8 @@ export class SaveStockService {
         closeNSE: closeNse,
         diff: difference,
         percDiff: percentDiff,
-        dateTime: ""
+        dateTime: "",
+        quantity: quantity
     }
     return this.httpClient.post("http://localhost:9000/save", JSON.stringify(obj), this.headers);
   }

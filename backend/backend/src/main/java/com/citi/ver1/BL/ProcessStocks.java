@@ -89,7 +89,6 @@ public class ProcessStocks {
 		};
 		ArrayList<Stock>arbOpport = new ArrayList<>();
 		Set<String>set=new HashSet<String>();
-		System.out.println("after clear");
 		Map<String, yahoofinance.Stock> stocks = YahooFinance.get(symbols); // single request
 		for(int i=0;i<symbols.length;i=i+2) {
 			yahoofinance.Stock nse = stocks.get(symbols[i]);

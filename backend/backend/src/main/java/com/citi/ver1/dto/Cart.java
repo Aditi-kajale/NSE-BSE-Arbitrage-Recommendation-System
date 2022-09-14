@@ -20,8 +20,16 @@ public class Cart {
 	private BigDecimal percDiff;
 	private String dateTime;
 	private String email;
+	private double quantity;
+	
 	public int getStockId() {
 		return stockId;
+	}
+	public double getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(double quantity) {
+		this.quantity = quantity;
 	}
 	public void setStockId(int stockId) {
 		this.stockId = stockId;
@@ -49,6 +57,19 @@ public class Cart {
 	}
 	public void setDiff(BigDecimal diff) {
 		this.diff = diff;
+	}
+	public Cart(int stockId, String companyName, BigDecimal closeNSE, BigDecimal closeBSE, BigDecimal diff,
+			BigDecimal percDiff, String dateTime, String email, double quantity) {
+		super();
+		this.stockId = stockId;
+		this.companyName = companyName;
+		this.closeNSE = closeNSE;
+		this.closeBSE = closeBSE;
+		this.diff = diff;
+		this.percDiff = percDiff;
+		this.dateTime = dateTime;
+		this.email = email;
+		this.quantity = quantity;
 	}
 	public BigDecimal getPercDiff() {
 		return percDiff;

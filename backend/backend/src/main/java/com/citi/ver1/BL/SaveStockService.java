@@ -10,7 +10,7 @@ public class SaveStockService {
 	@Autowired
 	private User_Cart_Repo user_Cart_Repo;
 	public void insert(Cart cart) {
-		user_Cart_Repo.insertInCart(cart.getCompanyName(), cart.getCloseNSE(), cart.getCloseBSE(), cart.getDiff(), cart.getPercDiff(), cart.getDateTime(), cart.getEmail());
+		user_Cart_Repo.insertInCart(cart.getCompanyName(), cart.getCloseNSE(), cart.getCloseBSE(), cart.getDiff(), cart.getPercDiff(), cart.getDateTime(), cart.getEmail(), cart.getQuantity());
 	}
 }
 

@@ -15,17 +15,17 @@ import { SavedStockService } from '../savedstockservice.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit{ 
-  displayedColumns: string[] = ['company_name', 'close_nse', 'close_bse', 'higher', 'difference', 'percent_diff', 'save'];
-  displayedColumns1: string[] = ['company_name', 'close_nse', 'close_bse', 'higher', 'difference', 'percent_diff'];
-  displayedColumns2: string[] = ['company_name', 'close_nse', 'close_bse', 'higher', 'difference', 'percent_diff', 'date_time'];
+  displayedColumns: string[] = ['company_name', 'close_nse', 'close_bse', 'higher', 'percent_diff', 'difference', 'quantity', 'save'];
+  displayedColumns1: string[] = ['company_name', 'close_nse', 'close_bse', 'higher',  'percent_diff', 'difference'];
+  displayedColumns2: string[] = ['company_name', 'close_nse', 'close_bse', 'higher', 'date_time', 'percent_diff', 'difference', 'quantity'];
   datasourceSavedStocks: MatTableDataSource<any> = new MatTableDataSource();
   datasourceLiveStocks: MatTableDataSource<any> = new MatTableDataSource();
   datasourceTopFive: MatTableDataSource<any> = new MatTableDataSource();
 
   constructor(private toast: NgToastService, private dashboardService: DashboardService, private liveStockService: LiveStockService, private saveStockService: SaveStockService, private cookieService: CookieService, private savedStockService: SavedStockService) { }
 
-  saveStock(companyName: String, closeBSE: Number, closeNSE: Number, diff: Number, percDiff: Number){
-    this.saveStockService.saveStock(this.cookieService.get('email'), companyName, closeBSE, closeNSE, diff, percDiff).subscribe(data=>{
+  saveStock(companyName: String, closeBSE: Number, closeNSE: Number, diff: Number, percDiff: Number, quantity: Number){
+    this.saveStockService.saveStock(this.cookieService.get('email'), companyName, closeBSE, closeNSE, diff, percDiff, quantity).subscribe(data=>{
       this.toast.success({detail: "Success Message", summary:"Saved Successfully!", duration:5000});
     }, error=>this.toast.error({detail: "Error Message", summary:"Failed to Save, Try again!", duration:5000}));
   }
@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    setTimeout(() => { this.ngOnInit(); console.log("hi")}, 1000 * 10)
+    setTimeout(() => { this.ngOnInit()}, 1000 * 10)
 
     this.dashboardService.top().subscribe(data => {
       this.topFive = data;

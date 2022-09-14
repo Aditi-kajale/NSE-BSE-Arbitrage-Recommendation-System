@@ -60,5 +60,8 @@ th {
 
 
 td, th {
-  width: 18%;
+  width: 15%;
 }
+td.company, th.company{
+  width: 25%;
+} 
