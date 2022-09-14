@@ -56,12 +56,39 @@ public class Cart {
 	public void setPercDiff(BigDecimal percDiff) {
 		this.percDiff = percDiff;
 	}
-	public String getUsername() {
+	public Cart(int stockId, String companyName, BigDecimal closeNSE, BigDecimal closeBSE, BigDecimal diff,
+			BigDecimal percDiff, String dateTime, String email) {
+		super();
+		this.stockId = stockId;
+		this.companyName = companyName;
+		this.closeNSE = closeNSE;
+		this.closeBSE = closeBSE;
+		this.diff = diff;
+		this.percDiff = percDiff;
+		this.dateTime = dateTime;
+		this.email = email;
+	}
+	public Cart() {
+		super();
+	}
+	public Cart(String companyName, BigDecimal closeNSE, BigDecimal closeBSE, BigDecimal diff, BigDecimal percDiff,
+			String dateTime, String email) {
+		super();
+		this.companyName = companyName;
+		this.closeNSE = closeNSE;
+		this.closeBSE = closeBSE;
+		this.diff = diff;
+		this.percDiff = percDiff;
+		this.dateTime = dateTime;
+		this.email = email;
+	}
+	public String getEmail() {
 		return email;
 	}
-	public void setUsername(String username) {
-		this.email = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
+
 	public String getDateTime() {
 		return dateTime;
 	}
@@ -71,7 +98,7 @@ public class Cart {
 	}
 	@Override
 	public String toString() {
-		return "User_Cart [stockId=" + stockId + ", email=" + email + ", companyName=" + companyName
+		return "Cart [stockId=" + stockId + ", email=" + email + ", companyName=" + companyName
 				+ ", closeNSE=" + closeNSE + ", closeBSE=" + closeBSE + ", diff=" + diff + ", percDiff=" + percDiff
 				+ ", dateTime=" + dateTime + "]";
 	}

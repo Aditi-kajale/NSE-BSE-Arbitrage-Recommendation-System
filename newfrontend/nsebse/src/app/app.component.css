@@ -49,6 +49,7 @@ body{
   color: #5383d3;
 }
 
+
 /* Footer links */
 
 .footer-distributed .footer-links {
@@ -114,11 +115,6 @@ body{
   text-decoration: none;
 }
 
-/* Footer Right */
-
-.footer-distributed .footer-right {
-  width: 20%;
-}
 
 .footer-distributed .footer-company-about {
   line-height: 20px;

@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.citi.ver1.BL.LoginService;
 import com.citi.ver1.BL.ProcessStocks;
+import com.citi.ver1.BL.SaveStockService;
+
+import com.citi.ver1.BL.SavedStocksService;
 import com.citi.ver1.BL.SignUpService;
 import com.citi.ver1.dto.Cart;
 import com.citi.ver1.dto.Stock;
@@ -35,12 +39,17 @@ public class MainController {
 	@Autowired(required=false)
 	private ProcessStocks processStocks;
 	
-	@Autowired(required=false)
-	User_Cart_Repo ucr;
+	@Autowired
+	Login_Repo loginRepo;
+	
+	@Autowired 
+	SaveStockService saveStockService;
+	@Autowired 
+	SavedStocksService savedStocksService;
 	
 	
 	@Autowired
-	Login_Repo loginRepo;
+	User_Cart_Repo user_Cart_Repo;
 	
 	@Autowired 
 	LoginService loginService;
@@ -91,37 +100,22 @@ public class MainController {
 		}
 		return (ResponseEntity<?>) ResponseEntity.internalServerError();	
 	}
+
 	
-//	@PostMapping("/find/{email}/{password}")
-//	public String findUserFromDB(@PathVariable String email,@PathVariable String password){
-//		if(loginService.findUserFromDB(email,password).size()==0) {
-//			return "failed";
-//		}
-//		else {
-//			curEmail=email;
-//			return "succ";
-//		}
-//	}
-//	@RequestMapping(method=RequestMethod.POST,value="/reg")
-//	public String loginUser(@RequestBody User user) {
-//		loginRepo.save(user);
-//		return "inserted";
-//		
-//	}
-//	
-	
-	
-	
-	
-	
-	// while saving
-	@RequestMapping(method=RequestMethod.POST,value="/topic")
-	public String addStock(@RequestBody Cart user_stock) {
-		DateFormat dfor = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-		Date obj = new Date();
-		user_stock.setDateTime(dfor.format(obj));
-		ucr.save(user_stock);
-		return "insert succ";
+	@PostMapping(value = "/save", consumes = {"application/json"})
+	public ResponseEntity<?> addStock(@RequestBody Cart stock) {
+		try
+		{
+			DateFormat dfor = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+			Date obj = new Date();
+			stock.setDateTime(dfor.format(obj));
+			saveStockService.insert(stock);
+			return ResponseEntity.ok(stock);
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		return (ResponseEntity<?>) ResponseEntity.internalServerError();	
 	}
 	
 	
@@ -135,10 +129,10 @@ public class MainController {
 		return processStocks.sendLiveStocks();
 	}
 	
-	@GetMapping("/findStock")
-	public List<Cart> findStocksFromDB(String username) {
-		return ucr.findAllStocks(curEmail);
+	@PostMapping(value = "/savedStocks", consumes = {"application/json"})
+	public List<Cart> sendSaveStocks(@RequestBody User user){
+		System.out.println(user.getEmail());
+		return savedStocksService.savedStocks(user.getEmail());
 	}
-	
-	
+
 }
