@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { LiveStockService } from '../livestockservice.service';
 import {MatPaginator} from '@angular/material/paginator';
@@ -14,7 +14,7 @@ import { SavedStockService } from '../savedstockservice.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit { 
+export class DashboardComponent implements OnInit{ 
   displayedColumns: string[] = ['company_name', 'close_nse', 'close_bse', 'higher', 'difference', 'percent_diff', 'save'];
   displayedColumns1: string[] = ['company_name', 'close_nse', 'close_bse', 'higher', 'difference', 'percent_diff'];
   displayedColumns2: string[] = ['company_name', 'close_nse', 'close_bse', 'higher', 'difference', 'percent_diff', 'date_time'];
@@ -23,7 +23,6 @@ export class DashboardComponent implements OnInit {
   datasourceTopFive: MatTableDataSource<any> = new MatTableDataSource();
 
   constructor(private toast: NgToastService, private dashboardService: DashboardService, private liveStockService: LiveStockService, private saveStockService: SaveStockService, private cookieService: CookieService, private savedStockService: SavedStockService) { }
-  
 
   saveStock(companyName: String, closeBSE: Number, closeNSE: Number, diff: Number, percDiff: Number){
     this.saveStockService.saveStock(this.cookieService.get('email'), companyName, closeBSE, closeNSE, diff, percDiff).subscribe(data=>{
@@ -31,7 +30,7 @@ export class DashboardComponent implements OnInit {
     }, error=>this.toast.error({detail: "Error Message", summary:"Failed to Save, Try again!", duration:5000}));
   }
 
-
+  interval: number = 10;
   savedStocks: any;
   liveStocks: any;
   topFive: any;
@@ -51,8 +50,9 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-
   ngOnInit(): void {
+    setTimeout(() => { this.ngOnInit(); console.log("hi")}, 1000 * 10)
+
     this.dashboardService.top().subscribe(data => {
       this.topFive = data;
       this.datasourceTopFive.data = this.topFive;
@@ -72,5 +72,7 @@ export class DashboardComponent implements OnInit {
   logout() {
     this.cookieService.delete('email');
   }
+
+
 }
 

@@ -3,8 +3,10 @@ package com.citi.ver1.BL;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,15 +22,15 @@ import yahoofinance.YahooFinance;
 @Service
 //a class for taking the stock data at a particular time instant and finding best arbitrage opportunities
 public class ProcessStocks {
-	
-	private static ArrayList<Stock>arbOpport = new ArrayList<>();
-	public static void sortStocks() {
+
+	public static void sortStocks(ArrayList<Stock>arbOpport) {
 		Collections.sort(arbOpport,new StockComparator());
 	}
 	
 	public List<Stock> sendTopStocks() {
+		ArrayList<Stock>arbOpport = new ArrayList<>();
 		try {
-			proc();
+			arbOpport=proc();
 		}
 		catch(Exception e) {
 			System.out.println(e);
@@ -42,8 +44,9 @@ public class ProcessStocks {
 	}
 	
 	public List<Stock> sendLiveStocks() {
+		ArrayList<Stock>arbOpport = new ArrayList<>();
 		try {
-			proc();
+			arbOpport=proc();
 		}
 		catch(Exception e) {
 			System.out.println(e);
@@ -52,7 +55,7 @@ public class ProcessStocks {
 	}
 	
 	
-	public static void proc() throws InterruptedException, IOException{
+	public static ArrayList<Stock> proc() throws InterruptedException, IOException{
 		String[] symbols = new String[] {
 				"APOLLOHOSP.NS","APOLLOHOSP.BO",
 				"ASIANPAINT.NS","ASIANPAINT.BO",
@@ -84,14 +87,19 @@ public class ProcessStocks {
 				"WIPRO.NS","WIPRO.BO",
 
 		};
+		ArrayList<Stock>arbOpport = new ArrayList<>();
+		Set<String>set=new HashSet<String>();
+		System.out.println("after clear");
 		Map<String, yahoofinance.Stock> stocks = YahooFinance.get(symbols); // single request
 		for(int i=0;i<symbols.length;i=i+2) {
 			yahoofinance.Stock nse = stocks.get(symbols[i]);
 			yahoofinance.Stock bse = stocks.get(symbols[i+1]);
+			System.out.println(nse.getName());
 			arbOpport.add(new Stock(nse.getName(),nse.getQuote().getPrice(),bse.getQuote().getPrice()));
 		}
-		sortStocks();	
 		
+		sortStocks(arbOpport);	
+		return arbOpport;
 	}
 	
 
