@@ -13,7 +13,7 @@ export class SaveStockService {
 }
   constructor(private httpClient: HttpClient) {}
 
-  saveStock(email: String, companyName: String, closeBse: Number, closeNse: Number, difference: Number, percentDiff: Number, quantity: Number):Observable<object>{
+  saveStock(email: String, companyName: String, closeBse: Number, closeNse: Number, difference: Number, percentDiff: Number, quantity: Number, profit: Number):Observable<object>{
     let obj = {
         email: email,
         companyName: companyName,
@@ -22,14 +22,15 @@ export class SaveStockService {
         diff: difference,
         percDiff: percentDiff,
         dateTime: "",
-        quantity: quantity
+        quantity: quantity,
+        profit: profit
     }
     return this.httpClient.post("http://localhost:9000/save", JSON.stringify(obj), this.headers);
   }
 
 
 
-  deleteStock(email: String, companyName: String, closeBse: Number, closeNse: Number, difference: Number, percentDiff: Number, quantity: Number):Observable<object>{
+  deleteStock(email: String, companyName: String, closeBse: Number, closeNse: Number, difference: Number, percentDiff: Number, dateTime: String, quantity: Number):Observable<object>{
     let obj = {
         email: email,
         companyName: companyName,
@@ -37,9 +38,10 @@ export class SaveStockService {
         closeNSE: closeNse,
         diff: difference,
         percDiff: percentDiff,
-        dateTime: "",
+        dateTime: dateTime,
         quantity: quantity
     }
+    console.log("hii");
     return this.httpClient.post("http://localhost:9000/delete", JSON.stringify(obj), this.headers);
   }
 

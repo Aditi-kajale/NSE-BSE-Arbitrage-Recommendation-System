@@ -9,7 +9,7 @@ import { DashboardService } from '../dashboard.service';
   styleUrls: ['./base.component.css']
 })
 export class BaseComponent {
-  displayedColumns: string[] = ['company_name', 'close_nse', 'close_bse', 'higher', 'difference', 'percent_diff'];
+  displayedColumns: string[] = ['company_name', 'close_nse', 'close_bse', 'recommendation',  'percent_diff'];
   datasourceTopFive: MatTableDataSource<any> = new MatTableDataSource();
 
   constructor(private dashboardService: DashboardService, private cookieService: CookieService) { }

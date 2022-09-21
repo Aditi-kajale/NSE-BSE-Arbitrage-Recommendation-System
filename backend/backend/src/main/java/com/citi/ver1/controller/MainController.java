@@ -34,48 +34,34 @@ import com.citi.ver1.repository.User_Cart_Repo;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class MainController {
-	private String curEmail;
 	
-	@Autowired(required=false)
+	@Autowired
 	private ProcessStocks processStocks;
 	
-	@Autowired
-	Login_Repo loginRepo;
+	@Autowired 
+	private SaveStockService saveStockService;
 	
 	@Autowired 
-	SaveStockService saveStockService;
-	@Autowired 
-	SavedStocksService savedStocksService;
-	
-	
-	@Autowired
-	User_Cart_Repo user_Cart_Repo;
+	private SavedStocksService savedStocksService;
 	
 	@Autowired 
-	LoginService loginService;
-	
-	
-	@Autowired
-	SignUpRepo SignUpRepo;
-	
+	private LoginService loginService;
+
 	@Autowired 
-	SignUpService signUpService;
+	private SignUpService signUpService;
 	
 	@PostMapping(value = "/login", consumes = {"application/json"})
-	public ResponseEntity<?> Login(@RequestBody User user2)
+	public ResponseEntity<?> login(@RequestBody User user)
 	{
-		Optional<User> user1=loginRepo.findById(user2.getEmail());
+		Optional<User> user1=loginService.findUser(user.getEmail());
 		try
 		{
-			if(user1.get().getPassword().compareTo(user2.getPassword()) == 0)
+			if(user1.get().getPassword().compareTo(user.getPassword()) == 0)
 			{
-				System.out.println("succ");
 				return ResponseEntity.ok(user1);
 			}
 			else
 			{
-				System.out.println("fail");
-
 				return (ResponseEntity<?>) ResponseEntity.internalServerError();
 			}
 		}
@@ -89,7 +75,6 @@ public class MainController {
 	@PostMapping(value = "/signUp", consumes = {"application/json"})
 	public ResponseEntity<?> signUp(@RequestBody User user)
 	{
-		System.out.println(user);
 		try
 		{
 			signUpService.insert(user);
@@ -103,7 +88,7 @@ public class MainController {
 
 	
 	@PostMapping(value = "/save", consumes = {"application/json"})
-	public ResponseEntity<?> addStock(@RequestBody Cart stock) {
+	public ResponseEntity<?> saveStock(@RequestBody Cart stock) {
 		try
 		{
 			DateFormat dfor = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
@@ -120,19 +105,30 @@ public class MainController {
 	
 	
 	@RequestMapping("/top")
-	public List<Stock> disp(){
+	public List<Stock> topStocks(){
 		return processStocks.sendTopStocks();
 	}
 	
 	@RequestMapping("/liveStocks")
-	public List<Stock> sendLiveStocks(){
+	public List<Stock> liveStocks(){
 		return processStocks.sendLiveStocks();
 	}
 	
 	@PostMapping(value = "/savedStocks", consumes = {"application/json"})
-	public List<Cart> sendSaveStocks(@RequestBody User user){
-		System.out.println(user.getEmail());
+	public List<Cart> saveStock(@RequestBody User user){
 		return savedStocksService.savedStocks(user.getEmail());
 	}
-
+	
+	@PostMapping(value = "/delete", consumes = {"application/json"})
+	public ResponseEntity<?> deleteStock(@RequestBody Cart stock) {
+		try
+		{
+			saveStockService.deleteStock(stock);
+			return ResponseEntity.ok(stock);
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		return (ResponseEntity<?>) ResponseEntity.internalServerError();		
+	}
 }

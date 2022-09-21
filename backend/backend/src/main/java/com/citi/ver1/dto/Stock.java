@@ -16,8 +16,13 @@ public class Stock {
 		this.closeNSE = closeNSE;
 		this.closeBSE = closeBSE;
 		this.diff=(closeNSE.subtract(closeBSE)).abs();
-		this.percDiff=this.diff.divide(closeBSE,4, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
-		
+		this.percDiff=this.diff.divide(min(closeBSE, closeNSE), 4, RoundingMode.HALF_UP);
+		this.percDiff=this.percDiff.multiply(new BigDecimal(100));
+	}
+	private BigDecimal min(BigDecimal closeBSE, BigDecimal closeNSE) {
+		if(closeBSE.compareTo(closeNSE) < 0)
+			return closeBSE;
+		return closeNSE;
 	}
 	public String getCompanyName() {
 		return companyName;

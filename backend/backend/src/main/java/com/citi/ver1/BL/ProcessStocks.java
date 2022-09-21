@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.citi.ver1.dto.Stock;
@@ -30,7 +31,7 @@ public class ProcessStocks {
 	public List<Stock> sendTopStocks() {
 		ArrayList<Stock>arbOpport = new ArrayList<>();
 		try {
-			arbOpport=proc();
+			arbOpport=getStockData();
 		}
 		catch(Exception e) {
 			System.out.println(e);
@@ -46,7 +47,7 @@ public class ProcessStocks {
 	public List<Stock> sendLiveStocks() {
 		ArrayList<Stock>arbOpport = new ArrayList<>();
 		try {
-			arbOpport=proc();
+			arbOpport=getStockData();
 		}
 		catch(Exception e) {
 			System.out.println(e);
@@ -55,7 +56,7 @@ public class ProcessStocks {
 	}
 	
 	
-	public static ArrayList<Stock> proc() throws InterruptedException, IOException{
+	public static ArrayList<Stock> getStockData() throws InterruptedException, IOException{
 		String[] symbols = new String[] {
 				"APOLLOHOSP.NS","APOLLOHOSP.BO",
 				"ASIANPAINT.NS","ASIANPAINT.BO",
@@ -116,13 +117,13 @@ public class ProcessStocks {
 		for(int i=0;i<symbols.length;i=i+2) {
 			yahoofinance.Stock nse = stocks.get(symbols[i]);
 			yahoofinance.Stock bse = stocks.get(symbols[i+1]);
-			System.out.println(nse.getName());
 			arbOpport.add(new Stock(nse.getName(),nse.getQuote().getPrice(),bse.getQuote().getPrice()));
 		}
 		
 		sortStocks(arbOpport);	
 		return arbOpport;
 	}
+
 	
 
 }

@@ -21,7 +21,28 @@ public class Cart {
 	private String dateTime;
 	private String email;
 	private double quantity;
+	private double profit;
 	
+	public Cart(int stockId, String companyName, BigDecimal closeNSE, BigDecimal closeBSE, BigDecimal diff,
+			BigDecimal percDiff, String dateTime, String email, double quantity, double profit) {
+		super();
+		this.stockId = stockId;
+		this.companyName = companyName;
+		this.closeNSE = closeNSE;
+		this.closeBSE = closeBSE;
+		this.diff = diff;
+		this.percDiff = percDiff;
+		this.dateTime = dateTime;
+		this.email = email;
+		this.quantity = quantity;
+		this.profit = profit;
+	}
+	public double getProfit() {
+		return profit;
+	}
+	public void setProfit(double profit) {
+		this.profit = profit;
+	}
 	public int getStockId() {
 		return stockId;
 	}

@@ -81,21 +81,16 @@
           <td mat-cell *matCellDef="let element"> {{element.closeBSE}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="higher">
-          <th mat-header-cell *matHeaderCellDef> Higher (NSE / BSE)</th>
+            
+        <ng-container matColumnDef="recommendation">
+          <th mat-header-cell *matHeaderCellDef> Recommendation</th>
           <ng-container *matCellDef="let element" class ="cell">
-              <td mat-cell *ngIf="element.closeNSE > element.closeBSE"> NSE </td>
-              <td mat-cell *ngIf="element.closeNSE < element.closeBSE"> BSE </td>
-              <td mat-cell *ngIf="element.closeNSE == element.closeBSE"> Equal </td>
+              <td mat-cell *ngIf="element.closeNSE > element.closeBSE">Buy in BSE Sell in NSE </td>
+              <td mat-cell *ngIf="element.closeNSE < element.closeBSE">Buy in NSE Sell in BSE </td>
+              <td mat-cell *ngIf="element.closeNSE == element.closeBSE"> Equal Price </td>
 
           </ng-container>
       </ng-container>
-
-        <!-- Difference Column -->
-        <ng-container matColumnDef="difference">
-          <th mat-header-cell *matHeaderCellDef> Difference </th>
-          <td mat-cell *matCellDef="let element"> {{element.diff}} </td>
-        </ng-container>
 
 
 
