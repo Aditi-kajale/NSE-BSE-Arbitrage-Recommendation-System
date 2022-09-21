@@ -21,13 +21,15 @@
                 <form [formGroup]="form" (ngSubmit)="submit()">
                   <p>
                     <mat-form-field>
-                      <input type="email" matInput placeholder="Email" formControlName="email">
-                    </mat-form-field>
+                      <input matInput placeholder="Email" formControlName="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required>
+                      <mat-error *ngIf="f['email'].errors?.['required']">Email is required</mat-error>
+                      <mat-error *ngIf="f['email'].errors?.['email']">Please enter a valid email address</mat-error>
+                  </mat-form-field>
                   </p>
         
                   <p>
                     <mat-form-field>
-                      <input type="password" matInput placeholder="Password" formControlName="password">
+                      <input matInput placeholder="Password" formControlName="password" required>
                     </mat-form-field>
                   </p>
         

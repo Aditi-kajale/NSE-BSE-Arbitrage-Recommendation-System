@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
-import { Input, Output, EventEmitter } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { FormControl } from '@angular/forms';
-import { User } from '../user';
 import { SignupserviceService } from '../signupservice.service';
 import {NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';
@@ -14,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
   form: FormGroup = new FormGroup({
-    email: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl(''),
   });
   constructor(private toast: NgToastService, private signupservice: SignupserviceService, private formBuilder: FormBuilder,private router: Router) { }
@@ -28,5 +25,9 @@ export class SignupComponent {
       this.router.navigateByUrl('/login');
     }, error=>this.toast.error({summary:"Sign Up Failed, Try again!", duration:5000}));
   }
+  }
+  get f()
+  {
+    return this.form.controls;
   }
 }

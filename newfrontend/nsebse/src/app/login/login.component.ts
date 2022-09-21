@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginserviceService } from '../loginservice.service';
 import {Router} from '@angular/router';
 import {NgToastService } from 'ng-angular-popup';
@@ -15,7 +15,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class LoginComponent{
   user: User;
   form: FormGroup = new FormGroup({
-    email: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl(''),
   });
   constructor(private toast: NgToastService, private loginservice: LoginserviceService, private formBuilder: FormBuilder,private router: Router, private cookieService: CookieService ) { }
@@ -33,6 +33,9 @@ export class LoginComponent{
 ngOnInit(): void {
   
 }
-
+get f()
+{
+  return this.form.controls;
+}
 }
 
