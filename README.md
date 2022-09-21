@@ -64,5 +64,7 @@ Application
 8. Dashboard: Functionality to Delete Saved Recommendation
 ![image](https://user-images.githubusercontent.com/55836122/191517016-e777f539-acb6-48f2-bb76-50f8177fd8be.png)
 
+9. Functionality to Get Email Updates to Registered Users when percentage difference goes beyond 20 percent
+![image](https://user-images.githubusercontent.com/55836122/191518408-c743cf59-02e5-4570-a309-2f1cb24e53a9.png)
 
 
