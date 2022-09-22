@@ -14,15 +14,16 @@ body{
 .footer-distributed {
   background-color: #000;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-  box-sizing: border-box;
+  box-sizing: content-box;
   width: 100%;
   text-align: left;
   font: bold 14px sans-serif;
   height: 100px;
-  padding: 10px 50px 50px 50px;
+  padding: 10px 50px 25px 50px;
   position: relative;
   bottom:0px;
 }
+
 
 .footer-distributed .footer-left,
 .footer-distributed .footer-center,
