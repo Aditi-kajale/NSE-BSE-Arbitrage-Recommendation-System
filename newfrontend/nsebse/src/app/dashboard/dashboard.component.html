@@ -142,7 +142,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
           </table>
-          <mat-paginator #datasourceLiveStocksPaginator [pageSize] = "10" [pageSizeOptions] = "[10,50,100,200,300,700]" 
+          <mat-paginator #datasourceLiveStocksPaginator [pageSize] = "10" [pageSizeOptions] = "[10,20,30,40,50]" 
   showFirstLastButtons>
 </mat-paginator>
 </div>
@@ -174,16 +174,6 @@
     <td mat-cell *matCellDef="let element" style="width: 10%;"> {{element.closeBSE}} </td>
   </ng-container>
 
-  <!-- <ng-container matColumnDef="higher">
-    <th mat-header-cell *matHeaderCellDef style="width: 4%;"> Higher</th>
-    <ng-container *matCellDef="let element" style="width: 4%;">
-        <td mat-cell *ngIf="element.closeNSE > element.closeBSE"> NSE </td>
-        <td mat-cell *ngIf="element.closeNSE < element.closeBSE"> BSE </td>
-        <td mat-cell *ngIf="element.closeNSE == element.closeBSE"> Equal </td>
-
-    </ng-container>
-
-</ng-container> -->
   <!-- Percentage Difference Column -->
   <ng-container matColumnDef="date_time">
     <th mat-header-cell *matHeaderCellDef>  Date </th>
@@ -221,7 +211,7 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
 </table>
-<mat-paginator #datasourceSavedStocksPaginator [pageSize] = "10" [pageSizeOptions] = "[10,50,80,100,200,300]" 
+<mat-paginator #datasourceSavedStocksPaginator [pageSize] = "10" [pageSizeOptions] = "[10,20,30,40,50]" 
 showFirstLastButtons>
 </mat-paginator>
 
