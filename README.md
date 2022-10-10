@@ -67,4 +67,7 @@ Application
 9. Functionality to send Email Updates to Registered Users when percentage difference goes beyond 20 percent
 ![image](https://user-images.githubusercontent.com/55836122/191518408-c743cf59-02e5-4570-a309-2f1cb24e53a9.png)
 
+10. Functionality to auto logout user, if there is inactivity on dashboard for 10 mins
+![end](https://user-images.githubusercontent.com/55836122/194808170-fd8e5e0d-d43a-4b8e-8354-e0d1bc5e0a07.jpg)
+
 
