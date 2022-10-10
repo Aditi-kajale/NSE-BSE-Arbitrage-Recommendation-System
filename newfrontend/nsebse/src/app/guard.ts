@@ -11,7 +11,7 @@ export class Guard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (this.cookieService.get('email') === '') {
-        this.toast.info({summary:"Login to your account", duration:5000});
+        this.toast.info({summary:"Login to your account", duration:3000});
         this.router.navigateByUrl('/login');
       return false;
     }

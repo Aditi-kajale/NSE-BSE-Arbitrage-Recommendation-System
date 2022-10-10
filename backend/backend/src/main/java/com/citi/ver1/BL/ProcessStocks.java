@@ -52,7 +52,7 @@ public class ProcessStocks {
 		catch(Exception e) {
 			System.out.println(e);
 		}
-		return arbOpport;
+		return arbOpport;	
 	}
 	
 	

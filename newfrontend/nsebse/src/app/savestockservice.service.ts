@@ -41,7 +41,6 @@ export class SaveStockService {
         dateTime: dateTime,
         quantity: quantity
     }
-    console.log("hii");
     return this.httpClient.post("http://localhost:9000/delete", JSON.stringify(obj), this.headers);
   }
 

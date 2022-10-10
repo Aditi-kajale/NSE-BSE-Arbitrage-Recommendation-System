@@ -33,11 +33,12 @@ class stock {
 @Service
 public class SendMailService {
 
-	@Scheduled(initialDelay = 1000, fixedRate = 30000)
+	@Scheduled(initialDelay = 1000, fixedRate = 1000)
 	public void scheduler() {
 		sendEmail();
 	}
-	
+	String prevcompany = "";
+	double prevPercDiff = -1;
 	
 	@Autowired
 	Login_Repo loginRepo;
@@ -59,8 +60,13 @@ public class SendMailService {
 
 	private stock sendUpdate() {
 		Stock s = processStocks.sendTopStocks().get(0);
-		if(s.getPercDiff().compareTo(new BigDecimal(20))>0) {
-			return new stock(s.getCompanyName(), s.getPercDiff().doubleValue());
+		if(s.getPercDiff().compareTo(new BigDecimal(5))>0) {
+			if(prevcompany != s.getCompanyName() && prevPercDiff != s.getPercDiff().doubleValue()) {
+				prevcompany = s.getCompanyName();
+				prevPercDiff = s.getPercDiff().doubleValue();
+				return new stock(s.getCompanyName(), s.getPercDiff().doubleValue());
+			}
+			return null;
 		}
 		return null;
 	}

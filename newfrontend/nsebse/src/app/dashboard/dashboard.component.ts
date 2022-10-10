@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { LiveStockService } from '../livestockservice.service';
 import {MatPaginator} from '@angular/material/paginator';
@@ -7,8 +7,9 @@ import { SaveStockService } from '../savestockservice.service';
 import {NgToastService } from 'ng-angular-popup';
 import { CookieService } from 'ngx-cookie-service';
 import { SavedStockService } from '../savedstockservice.service';
-import { min } from 'rxjs';
-
+import {Router} from '@angular/router';
+import { BnNgIdleService } from 'bn-ng-idle';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +24,7 @@ export class DashboardComponent implements OnInit{
   datasourceLiveStocks: MatTableDataSource<any> = new MatTableDataSource();
   datasourceTopFive: MatTableDataSource<any> = new MatTableDataSource();
 
-  constructor(private toast: NgToastService, private dashboardService: DashboardService, private liveStockService: LiveStockService, private saveStockService: SaveStockService, private cookieService: CookieService, private savedStockService: SavedStockService) { }
+  constructor(@Inject(DOCUMENT) private document: Document, private toast: NgToastService, private dashboardService: DashboardService, private liveStockService: LiveStockService, private saveStockService: SaveStockService, private cookieService: CookieService, private savedStockService: SavedStockService,private router: Router, private bnIdle: BnNgIdleService) { }
 
   saveStock(companyName: String, closeBSE: number, closeNSE: number, diff: number, percDiff: number, quantity: number){
     this.profit = diff * quantity;
@@ -60,28 +61,42 @@ export class DashboardComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    setTimeout(() => { this.ngOnInit()}, 1000 * 10)
+     this.bnIdle.startWatching(600).subscribe((res) => {
+      if (res && this.document.location.href == "http://localhost:4200/dashboard") {
+        this.cookieService.delete('email');
+        this.router.navigateByUrl('/base');
+        this.toast.info({summary:"Session expired", duration:5000});
+        console.log(this.document.location.href);
+      }}
+    );
 
+   
     this.dashboardService.top().subscribe(data => {
       this.topFive = data;
       this.datasourceTopFive.data = this.topFive;
-    });
+    }, error=>this.toast.error({summary:"Server Down", duration:5000}));
 
     this.liveStockService.liveStocks().subscribe(data => {
       this.liveStocks = data;
       this.datasourceLiveStocks.data = this.liveStocks;
-      });
+      }, error=>this.toast.error({summary:"Server Down", duration:5000}));
 
 
       this.savedStockService.savedStocks(this.cookieService.get('email')).subscribe(data => {
         this.savedStocks = data;
         this.datasourceSavedStocks.data = this.savedStocks;
-        });
-  }
+        }, error=>this.toast.error({summary:"Server Down", duration:3000}));
+
+        if(!this.showDashboard()) {
+          this.router.navigateByUrl('/base');
+        }
+      }
   logout() {
     this.cookieService.delete('email');
+    this.toast.success({summary:"Logout Successful", duration:3000});
   }
-
-
+  showDashboard() :Boolean {
+    return this.cookieService.get('email') !== "";
+  }
 }
 

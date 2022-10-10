@@ -23,7 +23,7 @@ export class LoginComponent{
   submit(){
     this.loginservice.Login(this.form.value).subscribe(data=>{
       this.toast.success({summary:"Login Successful!", duration:5000});
-      this.cookieService.set('email', this.form.value.email );
+      this.cookieService.set('email', this.form.value.email);
       this.form.reset();
       this.router.navigateByUrl('/dashboard');
     }, error=>this.toast.error({summary:"Login Failed, Try again!", duration:5000}));

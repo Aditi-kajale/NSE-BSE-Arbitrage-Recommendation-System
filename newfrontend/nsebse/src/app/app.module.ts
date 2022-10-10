@@ -22,6 +22,7 @@ import {MatCardModule} from '@angular/material/card';
 import { CookieService } from 'ngx-cookie-service';
 import {MatInputModule} from '@angular/material/input';
 import { Guard } from './guard';
+import { BnNgIdleService } from 'bn-ng-idle'; // import bn-ng-idle service
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { Guard } from './guard';
     NgToastModule,
     MatToolbarModule
   ],
-  providers:  [ CookieService, Guard],
+  providers:  [ CookieService, Guard, BnNgIdleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
